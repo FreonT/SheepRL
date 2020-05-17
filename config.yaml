@@ -1,0 +1,67 @@
+#env: BreakoutNoFrameskip-v4
+#env: PongNoFrameskip-v4
+#env: MontezumaRevengeNoFrameskip-v4
+#ObsType: Image
+env: CartPole-v1
+#env: Acrobot-v1
+#env: MountainCar-v0
+#env: HalfCheetahMuJoCoEnv-v0
+#env: HalfCheetahPyBulletEnv-v0
+model: SAC # Vanilla or SAC or SLAC
+ObsType: State # Atari or State or Image
+State2Image: True 
+num_stack: 4
+ActionType: Discrete # Continuous or Discrete
+action_shape:
+observation_shape:
+
+save_data: False
+save_data_name: random_
+
+mode: train
+xpid: example
+
+disable_checkpoint: True
+savedir: ./logs/impala
+cuda: True
+device: 
+
+num_sequences: 8
+
+num_actors: 16
+total_steps: 10_000_000
+batch_size: 8
+unroll_length: 40
+num_buffers: 20
+num_learner_threads: 1
+use_lstm: False
+
+entropy_cost: 0.01
+baseline_cost: 0.5
+discounting: 0.99
+multi_step: 1
+reward_clipping: abs_one
+
+#learning_rate: 0.00048
+learning_rate: 0.0004
+latent_learning_rate: 0.0001
+alpha: 0.99
+momentum: 0
+epsilon: 0.01
+grad_norm_clipping: 40.0
+
+sleep_time: 5
+
+
+hydra:
+    run:
+      # Output directory for normal runs
+      #dir: ./outputs/${now:%Y-%m-%d_%H-%M-%S}
+      dir: ./logs
+    sweep:
+      # Output directory for sweep runs
+      dir: /checkpoint/${env:USER}/outputs/${now:%Y-%m-%d_%H-%M-%S}
+    job_logging:
+      root:
+        level: WARNING
+        handlers: [console, file] # [console, file]
