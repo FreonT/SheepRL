@@ -14,8 +14,8 @@ os.environ["OMP_NUM_THREADS"] = "1"  # Necessary for multithreading.
 
 import torch
 
-from env_wrapper import create_env
-from run_threads import train, test
+from base.env_wrapper import create_env
+from base.run_threads import train, test
 
 
 def init_flags(flags):

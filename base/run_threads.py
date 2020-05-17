@@ -13,8 +13,8 @@ from torch import multiprocessing as mp
 from core import prof
 from core import environment
 
-from actor import act
-from env_wrapper import create_env
+from .actor import act
+from .env_wrapper import create_env
 
 os.environ["OMP_NUM_THREADS"] = "1"  # Necessary for multithreading.
 

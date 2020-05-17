@@ -1,4 +1,4 @@
-import atari_wrappers
+from . import atari_wrappers
 
 from collections import deque
 import gym

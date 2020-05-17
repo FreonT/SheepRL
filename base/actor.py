@@ -11,7 +11,7 @@ from torch import nn
 from core import environment
 from core import prof
 
-from env_wrapper import create_env
+from .env_wrapper import create_env
 
 Buffers = typing.Dict[str, typing.List[torch.Tensor]]
 
