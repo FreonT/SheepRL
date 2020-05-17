@@ -46,36 +46,36 @@ def main(flags : DictConfig):
     flags.observation_shape = env.observation_space.shape
 
     if flags.model == "Vanilla":
-        from vanilla.learn import learn, create_buffers, optimizer
+        from algos.vanilla.learn import learn, create_buffers, optimizer
         flags.action_shape = env.action_space.n
         if flags.ObsType == "State":
-            from vanilla.model import FCNet
+            from algos.vanilla.model import FCNet
             Net = FCNet
         elif flags.ObsType == "Image" or flags.ObsType == "Atari":
-            from vanilla.model import AtariNet
+            from algos.vanilla.model import AtariNet
             Net = AtariNet
 
     elif flags.model == "SAC":
         if flags.ActionType == "Continuous":
-            from sac.learn import learn, create_buffers, optimizer
-            from sac.model import SACNet
+            from algos.sac.learn import learn, create_buffers, optimizer
+            from algos.sac.model import SACNet
             flags.action_shape = env.action_space.shape[0]
             Net = SACNet
         elif flags.ActionType == "Discrete":
-            from sac_discrete.learn import learn, create_buffers, optimizer
-            from sac_discrete.model import SACNet
+            from algos.sac_discrete.learn import learn, create_buffers, optimizer
+            from algos.sac_discrete.model import SACNet
             flags.action_shape = env.action_space.n
             Net = SACNet
 
     elif flags.model == "SLAC":
         if flags.ActionType == "Continuous":
-            from slac.learn import learn, create_buffers, optimizer
-            from slac.model import SACNet
+            from algos.slac.learn import learn, create_buffers, optimizer
+            from algos.slac.model import SACNet
             flags.action_shape = env.action_space.shape[0]
             Net = SACNet
         elif flags.ActionType == "Discrete":
-            from slac_discrete.learn import learn, create_buffers, optimizer
-            from slac_discrete.model import SACNet
+            from algos.slac_discrete.learn import learn, create_buffers, optimizer
+            from algos.slac_discrete.model import SACNet
             flags.action_shape = env.action_space.n
             flags.observation_shape = env.observation_space.shape
             Net = SACNet
@@ -85,8 +85,8 @@ def main(flags : DictConfig):
             print("TOOD")
 
         elif flags.ActionType == "Discrete":
-            from random_agant.model import RandomAgent_discrete
-            from random_agant.learn import learn, create_buffers, optimizer
+            from algos.random_agant.model import RandomAgent_discrete
+            from algos.random_agant.learn import learn, create_buffers, optimizer
             
             flags.action_shape = env.action_space.n
             flags.observation_shape = env.observation_space.shape
